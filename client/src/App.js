@@ -45,12 +45,10 @@ class App extends React.Component {
         currentUser
       })
     }
-    // console.log(this.state.currentUser)
   }
 
   handleChange(e) {
     const {name, value} = e.target
-    console.log('handleChange')
     this.setState(prevState => ({
       userData: {
         ...prevState.userData,
@@ -61,7 +59,6 @@ class App extends React.Component {
 
   async handleLogin(e) {
     e.preventDefault();
-    console.log('handleLogin')
     const { email, password } = this.state.userData;
     const userData = { email, password }
     const resp = await loginUser(userData);
@@ -83,11 +80,23 @@ class App extends React.Component {
 
   async handleRegister(e) {
     e.preventDefault();
-    console.log('handleRegister')
     const { name, email, password } = this.state.userData;
     const userData = { name, email, password }
     const resp = await createUser(userData);
-    console.log(resp);
+    localStorage.setItem('userData', resp.token);
+    this.setState({
+      isLoggedIn: true,
+      currentUser: {
+        name: resp.userData.name,
+        email: resp.userData.email,
+        id: resp.userData.id
+      },
+      userData: {
+        email: '',
+        password: ''
+      }
+    })
+    this.props.history.push('/');
   }
 
   render() { 
@@ -95,11 +104,11 @@ class App extends React.Component {
       <div className="App">
         <Header
           isLoggedIn={this.state.isLoggedIn}
+          currentUser={this.state.currentUser}
           handleChange={this.handleChange}
           handleLogin={this.handleLogin}
           handleLogout={this.handleLogout}
           handleRegister={this.handleRegister} />
-        {(this.state.isLoggedIn) ? <p>Welcome {this.state.currentUser.name}</p> : null}
         <MoodTracker score={this.state.score}/>
         <Footer />
       </div>

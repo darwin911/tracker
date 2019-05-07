@@ -69,13 +69,14 @@ header {
 }
 
 .face {
-  width: 4rem;
-  height: 4rem;
-  margin: 2rem;
+  width: 2rem;
+  height: 2rem;
+  margin: 1rem;
   border-radius: 50%;
   font-size: 1.7rem;
   font-weight: 900;
   border: none;
+  cursor: pointer;
 
   &:active {
     fill: $lightGray;

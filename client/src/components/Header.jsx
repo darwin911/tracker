@@ -9,7 +9,8 @@ const Header = props => {
     handleChange,
     handleLogin,
     handleRegister,
-    handleLogout
+    handleLogout,
+    currentUser
   } = props;
   return (
     <header>
@@ -43,6 +44,7 @@ const Header = props => {
           )}
         />
       </nav>
+      {isLoggedIn ? <p>Welcome {currentUser.name}</p> : null}
     </header>
   );
 };
