@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900");
+*, *::before, *::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+body {
+  background: #621e81;
+  font-family: Oxygen, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  text-align: center;
+}
+
+h1 {
+  font-size: 9rem;
+  padding: 2rem;
+  background: #eaeaea;
+}
+
+.container {
+  background: #257aa6;
+  height: 50vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.current-mood {
+  font-size: 3.4rem;
+  color: white;
+}
+
+.score {
+  color: white;
+  font-size: 5rem;
+}
+
+.face {
+  width: 4rem;
+  height: 4rem;
+  margin: 2rem;
+  border-radius: 50%;
+  font-size: 1.7rem;
+  font-weight: 900;
+  border: none;
+}
+
+.face:active {
+  fill: #eaeaea;
+}
+
+.submit-btn {
+  display: block;
+  margin: 0 auto;
+  border: none;
+  border-radius: 5px;
+  padding: 0.7rem 1rem;
+}
+
+.one {
+  background: center/cover no-repeat url("./assets/sad-tear.svg");
+}
+
+.two {
+  background: center/cover no-repeat url("./assets/frown.svg");
+}
+
+.three {
+  background: center/cover no-repeat url("./assets/grin-regular.svg");
+}
+
+.four {
+  background: center/cover no-repeat url("./assets/grin-beam.svg");
+}
+
+.five {
+  background: center/cover no-repeat url("./assets/grin-squint.svg");
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #eaeaea;
+}
+
+.envelope, .github, .linkedin {
+  width: 2rem;
+  height: 2rem;
+  margin: 1rem;
+  display: inline-block;
+}
+
+.envelope {
+  background: center/cover no-repeat url("./assets/envelope.svg");
+}
+
+.github {
+  background: center/cover no-repeat url("./assets/github.svg");
+}
+
+.linkedin {
+  background: center/cover no-repeat url("./assets/linkedin.svg");
+}
+/*# sourceMappingURL=App.css.map */

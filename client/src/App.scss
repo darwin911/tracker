@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900');
+
+$lightGray: #eaeaea;
+$primary: #00bdaa;
+$secondary: #257aa6;
+$purple: #621e81;
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+body {
+  background: $purple;
+  font-family: Oxygen, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  text-align: center;
+}
+
+h1 {
+  font-size: 9rem;
+  padding: 2rem;
+  background: $lightGray;
+}
+
+.container {
+  background: $secondary;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.current-mood {
+  font-size: 3.4rem;
+  color: white;
+}
+
+.score {
+  color: white;
+  font-size: 5rem;
+}
+
+.face {
+  width: 4rem;
+  height: 4rem;
+  margin: 2rem;
+  border-radius: 50%;
+  font-size: 1.7rem;
+  font-weight: 900;
+  border: none;
+
+  &:active {
+    fill: $lightGray;
+  }
+}
+
+.submit-btn {
+  display: block;
+  margin: 0 auto;
+  border: none;
+  border-radius: 5px;
+  padding: 0.7rem 1rem;
+}
+
+.one {
+  background: center/cover no-repeat url("./assets/sad-tear.svg");
+}
+
+.two {
+  background: center/cover no-repeat url("./assets/frown.svg");
+}
+
+.three {
+  background: center/cover no-repeat url("./assets/grin-regular.svg");
+}
+
+.four {
+  background: center/cover no-repeat url("./assets/grin-beam.svg");
+}
+
+.five {
+  background: center/cover no-repeat url("./assets/grin-squint.svg");
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: $lightGray;
+}
+
+.contact-links {
+}
+
+%contact-icon {
+  width: 2rem;
+  height: 2rem;
+  margin: 1rem;
+  display: inline-block;
+}
+
+.envelope {
+  @extend %contact-icon;
+  background: center/cover no-repeat url("./assets/envelope.svg");
+}
+
+.github {
+  @extend %contact-icon;
+  background: center/cover no-repeat url("./assets/github.svg");
+}
+
+.linkedin {
+  @extend %contact-icon;
+  background: center/cover no-repeat url("./assets/linkedin.svg");
+}
