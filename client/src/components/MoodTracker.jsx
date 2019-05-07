@@ -26,8 +26,6 @@ class MoodTracker extends Component {
 
   render() {
     const { currentMood, mood } = this.state;
-    const today = new Date()
-    console.log(today.getTime())
     return (
       <main>
         <div className="container">
