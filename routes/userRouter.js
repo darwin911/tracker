@@ -1,5 +1,5 @@
 const express = require("express");
-const { User, Day } = require("../models");
+const { User, Entry } = require("../models");
 const { hash, compare, encode, verify } = require("../auth");
 
 const userRouter = express.Router();
@@ -98,47 +98,26 @@ userRouter.post("/login", async (req, res) => {
   }
 });
 
-const getDate = () => {
-  let today = new Date();
-  let dd = today.getDate();
-  let mm = today.getMonth() + 1; //January is 0!
-  let yyyy = today.getFullYear();
-
-  if (dd < 10) {
-    dd = "0" + dd;
-  }
-
-  if (mm < 10) {
-    mm = "0" + mm;
-  }
-
-  today = `${mm}-${dd}-${yyyy}`;
-  return today;
-};
-
-userRouter.post("/:user_id/day", async (req, res) => {
-  const date = getDate();
+userRouter.post("/:user_id/entry", async (req, res) => {
   try {
-    const user = await User.findByPk(req.body.user_id)
-    const day = await Day.create({
-      date: date,
-      mood: req.body.mood,
+    const user = await User.findByPk(req.body.user_id);
+    const entry = await Entry.create({
+      mood: req.body.mood
     });
 
-    day.setUser(user)
+    entry.setUser(user);
 
   } catch (error) {
     console.error(error);
   }
 });
 
-//Get a user's days
-userRouter.get("/:id/days", async (req, res) => {
+//Get a user entries
+userRouter.get("/:user_id/entries", async (req, res) => {
   try {
-    const user = await User.findOne({ where: { id: req.params.id } });
-    const days = await user.getDays();
-    // console.log(days)
-    res.json({ days });
+    const entries = await Entry.findAll({ where: { user_id: 1 }});
+
+    res.json({ entries });
   } catch (e) {
     console.log(e);
     res.stats(500).send(e.message);

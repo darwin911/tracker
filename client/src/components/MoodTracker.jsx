@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { setMoodDb } from '../services/helper';
+import { addEntry } from "../services/helper";
+import moment from "moment";
 
 class MoodTracker extends Component {
   constructor(props) {
@@ -12,11 +13,10 @@ class MoodTracker extends Component {
 
   async handleSubmit(e) {
     e.preventDefault();
-    const resp = await setMoodDb({
+    const resp = await addEntry({
       mood: this.state.mood,
       user_id: this.props.currentUser.id
-    })
-    console.log(resp)
+    });
   }
 
   setMood(e) {
@@ -67,6 +67,14 @@ class MoodTracker extends Component {
             />
 
             <input type="date" />
+
+            {this.props.userEntries &&
+              this.props.userEntries.map(entry => (
+                <p key={entry.id}>
+                  On {moment(entry.createdAt).format("MMMM Do YYYY")} at{" "}
+                  {moment(entry.createdAt).format("HH:MM:SS")} you're mood was {entry.mood}.
+                </p>
+              ))}
 
             <button className="submit-btn">Pants</button>
           </form>

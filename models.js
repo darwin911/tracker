@@ -40,25 +40,18 @@ const User = sequelize.define('users', {
   }
 });
 
-const Day = sequelize.define('days', {
-  date: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
+const Entry = sequelize.define('entries', {
   mood: {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
-  picture: {
-    type: Sequelize.STRING,
-  }
 });
 
-User.hasMany(Day, {
+User.hasMany(Entry, {
   onDelete: 'cascade',
 })
 
-Day.belongsTo(User, {
+Entry.belongsTo(User, {
   foreignKey: {
     allowNull: false,
   },
@@ -67,5 +60,5 @@ Day.belongsTo(User, {
 module.exports = {
   sequelize,
   User,
-  Day,
+  Entry,
 }

@@ -59,6 +59,12 @@ header {
   }
 }
 
+main {
+  p {
+    color: white;
+  }
+}
+
 .container {
   background: $secondary;
   height: 50vh;
@@ -114,5 +120,7 @@ header {
 .three  {background: center/cover no-repeat url('./assets/grin-regular.svg');}
 .four   {background: center/cover no-repeat url('./assets/grin-beam.svg');}
 .five   {background: center/cover no-repeat url('./assets/grin-squint.svg');}
+
+
 
 @import "footer"
