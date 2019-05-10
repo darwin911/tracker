@@ -22,6 +22,14 @@ body {
 
 header {
   background: #eaeaea;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .logo {
@@ -52,6 +60,15 @@ header {
   margin-bottom: 0.7rem;
 }
 
+.nav-header a {
+  color: black;
+  margin: 0 1rem;
+}
+
+.nav-header a:visted {
+  color: black;
+}
+
 .container {
   background: #257aa6;
   height: 50vh;
@@ -75,6 +92,20 @@ header {
   color: white;
 }
 
+[type="date"] {
+  display: block;
+  margin: 0 auto 1rem;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  -webkit-transition: opacity 200ms ease;
+  transition: opacity 200ms ease;
+}
+
+[type="date"]:hover {
+  opacity: 0.9;
+}
+
 .score {
   color: white;
   font-size: 2rem;
@@ -89,10 +120,6 @@ header {
   font-weight: 900;
   border: none;
   cursor: pointer;
-}
-
-.face:active {
-  fill: #eaeaea;
 }
 
 .submit-btn {

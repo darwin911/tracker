@@ -36,10 +36,8 @@ class App extends React.Component {
 
   componentDidMount() {
     const userData = localStorage.getItem('userData');
-    console.log(userData)
     if (userData) {
       const currentUser = decode(userData)
-      console.log(currentUser)
       this.setState({
         isLoggedIn: true,
         currentUser
@@ -74,15 +72,14 @@ class App extends React.Component {
   }
 
   handleLogout() {
-    localStorage.removeItem('userData')
+    localStorage.removeItem('userData');
     this.setState({ isLoggedIn: false });
   }
 
   async handleRegister(e) {
     e.preventDefault();
     const { name, email, password } = this.state.userData;
-    const userData = { name, email, password }
-    const resp = await createUser(userData);
+    const resp = await createUser({ name, email, password });
     localStorage.setItem('userData', resp.token);
     this.setState({
       isLoggedIn: true,
@@ -100,16 +97,24 @@ class App extends React.Component {
   }
 
   render() { 
+    const { isLoggedIn, currentUser, score } = this.state;
     return (
       <div className="App">
+
         <Header
-          isLoggedIn={this.state.isLoggedIn}
-          currentUser={this.state.currentUser}
+          isLoggedIn={isLoggedIn}
+          currentUser={currentUser}
           handleChange={this.handleChange}
           handleLogin={this.handleLogin}
           handleLogout={this.handleLogout}
           handleRegister={this.handleRegister} />
-        <MoodTracker score={this.state.score}/>
+
+        <MoodTracker
+          currentUser={currentUser}
+          score={score}
+          />
+
+        <p style={{color: "white"}} >Today {new Date().toDateString()}</p>
         <Footer />
       </div>
     )

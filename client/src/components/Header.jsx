@@ -15,6 +15,7 @@ const Header = props => {
   return (
     <header>
       <h1 className="logo">Tracker</h1>
+      {isLoggedIn ? <p>Welcome {currentUser.name}</p> : null}
       <nav className="nav-header">
         {isLoggedIn ? (
           <Link onClick={handleLogout} to="/">
@@ -44,7 +45,7 @@ const Header = props => {
           )}
         />
       </nav>
-      {isLoggedIn ? <p>Welcome {currentUser.name}</p> : null}
+     
     </header>
   );
 };

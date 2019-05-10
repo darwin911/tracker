@@ -1,0 +1,29 @@
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: $lightGray;
+}
+
+%contact-icon {
+  width: 2rem;
+  height: 2rem;
+  margin: 1rem;
+  display: inline-block;
+}
+
+.envelope {
+  @extend %contact-icon;
+  background: center/cover no-repeat url("./assets/envelope.svg");
+}
+
+.github {
+  @extend %contact-icon;
+  background: center/cover no-repeat url("./assets/github.svg");
+}
+
+.linkedin {
+  @extend %contact-icon;
+  background: center/cover no-repeat url("./assets/linkedin.svg");
+}

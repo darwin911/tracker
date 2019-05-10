@@ -67,5 +67,5 @@ Day.belongsTo(User, {
 module.exports = {
   sequelize,
   User,
-  Day
+  Day,
 }

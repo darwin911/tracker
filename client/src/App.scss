@@ -23,6 +23,9 @@ body {
 
 header {
   background: $lightGray;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .logo {
@@ -44,6 +47,13 @@ header {
 }
 
 .nav-header {
+  a {
+    color: black;
+    margin: 0 1rem;
+    &:visted {
+      color: black;
+    }
+  }
   form {
     @extend %form;
   }
@@ -63,6 +73,18 @@ header {
   color: white;
 }
 
+[type="date"] {
+  display: block;
+  margin: 0 auto 1rem;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: opacity 200ms ease;
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
 .score {
   color: white;
   font-size: 2rem;
@@ -77,10 +99,6 @@ header {
   font-weight: 900;
   border: none;
   cursor: pointer;
-
-  &:active {
-    fill: $lightGray;
-  }
 }
 
 .submit-btn {
@@ -91,54 +109,10 @@ header {
   padding: 0.7rem 1rem;
 }
 
-.one {
-  background: center/cover no-repeat url("./assets/sad-tear.svg");
-}
+.one    {background: center/cover no-repeat url("./assets/sad-tear.svg");}
+.two    {background: center/cover no-repeat url('./assets/frown.svg');}
+.three  {background: center/cover no-repeat url('./assets/grin-regular.svg');}
+.four   {background: center/cover no-repeat url('./assets/grin-beam.svg');}
+.five   {background: center/cover no-repeat url('./assets/grin-squint.svg');}
 
-.two {
-  background: center/cover no-repeat url("./assets/frown.svg");
-}
-
-.three {
-  background: center/cover no-repeat url("./assets/grin-regular.svg");
-}
-
-.four {
-  background: center/cover no-repeat url("./assets/grin-beam.svg");
-}
-
-.five {
-  background: center/cover no-repeat url("./assets/grin-squint.svg");
-}
-
-footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background: $lightGray;
-}
-
-.contact-links {
-}
-
-%contact-icon {
-  width: 2rem;
-  height: 2rem;
-  margin: 1rem;
-  display: inline-block;
-}
-
-.envelope {
-  @extend %contact-icon;
-  background: center/cover no-repeat url("./assets/envelope.svg");
-}
-
-.github {
-  @extend %contact-icon;
-  background: center/cover no-repeat url("./assets/github.svg");
-}
-
-.linkedin {
-  @extend %contact-icon;
-  background: center/cover no-repeat url("./assets/linkedin.svg");
-}
+@import "footer"
