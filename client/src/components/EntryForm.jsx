@@ -36,16 +36,8 @@ const EntryForm = ({ handleSubmit, mood, setMood, userEntries }) => {
         onClick={e => setMood(e)}
       />
 
-      <input type="date" />
-
-      {userEntries &&
-        userEntries.map(entry => (
-          <p key={entry.id}>
-            On {moment(entry.createdAt).format("MMMM Do YYYY")} at{" "}
-            {moment(entry.createdAt).format("HH:MM:SS")} you're mood was{" "}
-            {entry.mood}.
-          </p>
-        ))}
+      {/* current date as default value */}
+      <input type="date" value={moment(new Date()).format("YYYY-MM-DD")}/>
 
       <button className="submit-btn">Submit</button>
     </form>

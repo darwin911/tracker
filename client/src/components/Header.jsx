@@ -1,14 +1,9 @@
 import React from "react";
-import RegisterForm from "./RegisterForm.jsx";
-import LoginForm from "./LoginForm.jsx";
-import { Link, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Header = props => {
   const {
     isLoggedIn,
-    handleChange,
-    handleLogin,
-    handleRegister,
     handleLogout,
     currentUser
   } = props;
@@ -23,27 +18,9 @@ const Header = props => {
           </Link>
         ) : (
           <>
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
+            <p></p>
           </>
         )}
-
-        <Route
-          path="/login"
-          render={props => (
-            <LoginForm handleChange={handleChange} handleLogin={handleLogin} />
-          )}
-        />
-
-        <Route
-          path="/register"
-          render={props => (
-            <RegisterForm
-              handleChange={handleChange}
-              handleRegister={handleRegister}
-            />
-          )}
-        />
       </nav>
     </header>
   );

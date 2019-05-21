@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import EntryForm from "./EntryForm";
+import UserEntries from "./UserEntries";
 
 class Main extends Component {
   render() {
@@ -12,6 +13,7 @@ class Main extends Component {
           mood={mood}
           userEntries={userEntries}
         />
+        <UserEntries userEntries={userEntries}/>
       </main>
     );
   }

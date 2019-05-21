@@ -3,7 +3,7 @@ import React from "react";
 const LoginForm = props => {
   const { handleChange, handleLogin } = props
   return (
-    <form onSubmit={handleLogin}>
+    <form onSubmit={handleLogin} className="form">
       <input
         onChange={handleChange}
         type="email"

@@ -3,7 +3,7 @@ import React from "react";
 const RegisterForm = props => {
   const { handleChange, handleRegister } = props
   return (
-    <form onSubmit={handleRegister}>
+    <form onSubmit={handleRegister} className="form">
       <input
         onChange={handleChange}
         type="text"
@@ -22,6 +22,7 @@ const RegisterForm = props => {
         onChange={handleChange}
         type="password"
         name="password"
+        placeholder="password"
         required />
       <button>Register</button>
     </form>

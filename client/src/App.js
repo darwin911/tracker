@@ -3,13 +3,15 @@ import "./App.css";
 import Header from "./components/Header.jsx";
 import Main from "./components/Main.jsx";
 import Footer from "./components/Footer.jsx";
+import LoginForm from "./components/LoginForm.jsx";
+import RegisterForm from "./components/RegisterForm.jsx";
 import {
   createUser,
   loginUser,
   addEntry,
   getUserEntries
 } from "./services/helper";
-import { withRouter } from "react-router-dom";
+import { Link, Route, withRouter } from "react-router-dom";
 import decode from "jwt-decode";
 
 class App extends React.Component {
@@ -148,7 +150,34 @@ class App extends React.Component {
             currentUser={currentUser}
           />
         ) : (
-          <p>Please log in</p>
+          <section className="container">
+            <Link to="/login">Login</Link>
+            or
+            <Link to="/register">Register</Link>
+            
+            {!isLoggedIn && (
+              <>
+                <Route
+                  path="/login"
+                  render={props => (
+                    <LoginForm
+                      handleChange={this.handleChange}
+                      handleLogin={this.handleLogin}
+                    />
+                  )}
+                />
+                <Route
+                  path="/register"
+                  render={() => (
+                    <RegisterForm
+                      handleChange={this.handleChange}
+                      handleRegister={this.handleRegister}
+                    />
+                  )}
+                />
+              </>
+            )}
+          </section>
         )}
 
         <Footer />
