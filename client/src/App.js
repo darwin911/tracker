@@ -13,6 +13,7 @@ import {
 } from "./services/helper";
 import { Link, Route, withRouter } from "react-router-dom";
 import decode from "jwt-decode";
+import moment from "moment";
 
 class App extends React.Component {
   constructor(props) {
@@ -30,17 +31,22 @@ class App extends React.Component {
         name: "",
         email: "",
         password: "",
-        picture: ""
+        picture: "",
+      },
+      entryData: {
+        date: moment(new Date()).format("YYYY-MM-DD"),
+        mood: "",
+        weight: "",
       },
       userEntries: [],
-      mood: null
+      err: "",
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleEntryChange = this.handleEntryChange.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
     this.handleRegister = this.handleRegister.bind(this);
-    this.setMood = this.setMood.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -61,6 +67,7 @@ class App extends React.Component {
 
   handleChange(e) {
     const { name, value } = e.target;
+    console.log('change called')
     this.setState(prevState => ({
       userData: {
         ...prevState.userData,
@@ -71,18 +78,26 @@ class App extends React.Component {
 
   async handleLogin(e) {
     e.preventDefault();
-    const { email, password } = this.state.userData;
-    const userData = { email, password };
-    const resp = await loginUser(userData);
-    localStorage.setItem("userData", resp.token);
-    this.setState({
-      isLoggedIn: true,
-      userData: {
-        email: "",
-        password: ""
+    try {
+      const { email, password } = this.state.userData;
+      const userData = { email, password };
+      const resp = await loginUser(userData);
+      if (resp) {
+        localStorage.setItem("userData", resp.token);
+        this.setState({
+          isLoggedIn: true,
+          userData: {
+            email: "",
+            password: ""
+          }
+        });
+        this.props.history.push("/");
+      } else {
+        this.setState({ err: "Invalid Credentials" });
       }
-    });
-    this.props.history.push("/");
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   handleLogout() {
@@ -112,25 +127,32 @@ class App extends React.Component {
 
   async handleSubmit(e) {
     e.preventDefault();
-    const resp = await addEntry({
-      mood: this.state.mood,
-      user_id: this.state.currentUser.id
-    });
+    const data = {
+      user_id: this.state.currentUser.id,
+      mood: this.state.entryData.mood,
+      weight: parseInt(this.state.entryData.weight),
+    }
+    const resp = await addEntry(data);
     this.setState(prevState => ({
       userEntries: [...prevState.userEntries, resp]
     }));
   }
 
-  setMood(e) {
-    // preventDefault submit when selecting mood
+  handleEntryChange(e) {
     e.preventDefault();
-    this.setState({
-      mood: e.target.value
-    });
+    const { name, value } = e.target;
+    this.setState(prevState => {
+      return {
+        entryData: {
+          ...prevState.entryData,
+          [name]: value,
+        }
+      }
+    })
   }
 
   render() {
-    const { isLoggedIn, currentUser, mood, userEntries } = this.state;
+    const { isLoggedIn, currentUser, entryData, userEntries, err, } = this.state;
     return (
       <div className="App">
         <Header
@@ -143,9 +165,9 @@ class App extends React.Component {
         />
         {isLoggedIn ? (
           <Main
-            mood={mood}
+            entryData={entryData}
             handleSubmit={this.handleSubmit}
-            setMood={this.setMood}
+            handleEntryChange={this.handleEntryChange}
             userEntries={userEntries}
             currentUser={currentUser}
           />
@@ -154,7 +176,7 @@ class App extends React.Component {
             <Link to="/login">Login</Link>
             or
             <Link to="/register">Register</Link>
-            
+            <p style={{ color: "red" }}>{err && err}</p>
             {!isLoggedIn && (
               <>
                 <Route
