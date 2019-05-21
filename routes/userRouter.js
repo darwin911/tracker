@@ -90,7 +90,7 @@ userRouter.post("/login", async (req, res) => {
         const token = encode(userData);
         return res.json({ token, userData });
       }
-      return res.status(401).send("Invalid Credentials");
+      res.json({ msg: "Invalid Credentials" });
     }
     return res.status(401).send("Invalid Credentials");
   } catch (e) {
@@ -100,9 +100,11 @@ userRouter.post("/login", async (req, res) => {
 
 userRouter.post("/:user_id/entry", async (req, res) => {
   try {
+    console.log(req.body)
     const user = await User.findByPk(req.body.user_id);
     const entry = await Entry.create({
-      mood: req.body.mood
+      mood: req.body.mood,
+      weight: req.body.weight,
     });
 
     entry.setUser(user);
