@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { addEntry } from "../services/helper";
 import moment from "moment";
 
 class MoodTracker extends Component {
@@ -11,59 +10,45 @@ class MoodTracker extends Component {
     };
   }
 
-  async handleSubmit(e) {
-    e.preventDefault();
-    const resp = await addEntry({
-      mood: this.state.mood,
-      user_id: this.props.currentUser.id
-    });
-  }
-
-  setMood(e) {
-    e.preventDefault();
-    this.setState({
-      mood: e.target.value
-    });
-  }
 
   render() {
-    const { currentMood, mood } = this.state;
+    const { currentMood } = this.state;
+    const { handleSubmit, setMood, mood } = this.props;
     return (
       <main>
         <div className="container">
-          <h3 className="current-mood">Current Mood {currentMood}</h3>
 
-          <h2 className="score">{mood}</h2>
-          <form className="mood-form" onSubmit={e => this.handleSubmit(e)}>
+          <h2 className="mood">{mood}</h2>
+          <form className="mood-form" onSubmit={e => handleSubmit(e)}>
             <button
               className="face one"
               type="submit"
               value={1}
-              onClick={e => this.setMood(e)}
+              onClick={e => setMood(e)}
             />
             <button
               className="face two"
               type="submit"
               value={2}
-              onClick={e => this.setMood(e)}
+              onClick={e => setMood(e)}
             />
             <button
               className="face three"
               type="submit"
               value={3}
-              onClick={e => this.setMood(e)}
+              onClick={e => setMood(e)}
             />
             <button
               className="face four"
               type="submit"
               value={4}
-              onClick={e => this.setMood(e)}
+              onClick={e => setMood(e)}
             />
             <button
               className="face five"
               type="submit"
               value={5}
-              onClick={e => this.setMood(e)}
+              onClick={e => setMood(e)}
             />
 
             <input type="date" />
@@ -76,7 +61,7 @@ class MoodTracker extends Component {
                 </p>
               ))}
 
-            <button className="submit-btn">Pants</button>
+            <button className="submit-btn">Submit</button>
           </form>
         </div>
       </main>

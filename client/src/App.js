@@ -3,7 +3,12 @@ import "./App.css";
 import Header from "./components/Header.jsx";
 import MoodTracker from "./components/MoodTracker.jsx";
 import Footer from "./components/Footer.jsx";
-import { createUser, loginUser, getUserEntries } from "./services/helper";
+import {
+  createUser,
+  loginUser,
+  addEntry,
+  getUserEntries
+} from "./services/helper";
 import { withRouter } from "react-router-dom";
 import decode from "jwt-decode";
 
@@ -19,7 +24,6 @@ class App extends React.Component {
         id: "",
         picture: ""
       },
-      score: 0,
       userData: {
         name: "",
         email: "",
@@ -27,12 +31,15 @@ class App extends React.Component {
         picture: ""
       },
       userEntries: [],
+      mood: null
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
     this.handleRegister = this.handleRegister.bind(this);
+    this.setMood = this.setMood.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   async componentDidMount() {
@@ -46,6 +53,7 @@ class App extends React.Component {
         userEntries,
         currentUser
       });
+      this.props.history.push('/');
     }
   }
 
@@ -100,8 +108,27 @@ class App extends React.Component {
     this.props.history.push("/");
   }
 
+  async handleSubmit(e) {
+    e.preventDefault();
+    const resp = await addEntry({
+      mood: this.state.mood,
+      user_id: this.state.currentUser.id
+    });
+    this.setState(prevState => ({
+      userEntries: [...prevState.userEntries, resp]
+    }));
+  }
+
+  setMood(e) {
+    // preventDefault submit when selecting mood
+    e.preventDefault();
+    this.setState({
+      mood: e.target.value
+    });
+  }
+
   render() {
-    const { isLoggedIn, currentUser, score } = this.state;
+    const { isLoggedIn, currentUser, mood, userEntries } = this.state;
     return (
       <div className="App">
         <Header
@@ -112,11 +139,18 @@ class App extends React.Component {
           handleLogout={this.handleLogout}
           handleRegister={this.handleRegister}
         />
+        {isLoggedIn ? (
+          <MoodTracker
+            mood={mood}
+            handleSubmit={this.handleSubmit}
+            setMood={this.setMood}
+            userEntries={userEntries}
+            currentUser={currentUser}
+          />
+        ) : (
+          <p>Please log in</p>
+        )}
 
-        <MoodTracker 
-          userEntries={this.state.userEntries}
-          currentUser={currentUser}
-          score={score} />
         <Footer />
       </div>
     );

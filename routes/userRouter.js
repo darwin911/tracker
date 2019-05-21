@@ -106,7 +106,7 @@ userRouter.post("/:user_id/entry", async (req, res) => {
     });
 
     entry.setUser(user);
-
+    res.json(entry)
   } catch (error) {
     console.error(error);
   }
@@ -115,11 +115,9 @@ userRouter.post("/:user_id/entry", async (req, res) => {
 //Get a user entries
 userRouter.get("/:user_id/entries", async (req, res) => {
   try {
-    const entries = await Entry.findAll({ where: { user_id: 1 }});
-
+    const entries = await Entry.findAll({ where: { user_id: req.params.user_id }});
     res.json({ entries });
   } catch (e) {
-    console.log(e);
     res.stats(500).send(e.message);
   }
 });

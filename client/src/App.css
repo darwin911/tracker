@@ -14,7 +14,8 @@ html {
 body {
   height: 100%;
   min-height: 100vh;
-  background: #621e81;
+  background: white;
+  color: black;
   font-family: Oxygen, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   text-align: center;
   position: relative;
@@ -69,13 +70,21 @@ header {
   color: black;
 }
 
+main {
+  min-height: 100vh;
+}
+
 main p {
   color: white;
+  margin-bottom: 0.7rem;
+}
+
+main p:last-of-type {
+  margin-bottom: 1.5rem;
 }
 
 .container {
   background: #257aa6;
-  height: 50vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -89,11 +98,6 @@ main p {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-
-.current-mood {
-  font-size: 2rem;
-  color: white;
 }
 
 [type="date"] {
@@ -110,7 +114,7 @@ main p {
   opacity: 0.9;
 }
 
-.score {
+.mood {
   color: white;
   font-size: 2rem;
 }
