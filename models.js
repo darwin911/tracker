@@ -45,6 +45,10 @@ const Entry = sequelize.define('entries', {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
+  weight: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+  }
 });
 
 User.hasMany(Entry, {
