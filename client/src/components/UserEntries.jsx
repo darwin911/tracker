@@ -9,7 +9,7 @@ const UserEntries = ({ userEntries }) => {
           <p key={entry.id}>
             On {moment(entry.createdAt).format("MMMM Do YYYY")} at{" "}
             {moment(entry.createdAt).format("HH:MM:SS")} you're mood was{" "}
-            {entry.mood}.
+            {entry.mood}. Weight: {entry.weight}lbs
           </p>
         ))}
     </section>

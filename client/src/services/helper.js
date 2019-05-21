@@ -3,7 +3,7 @@ import axios from "axios";
 const api = axios.create({
   baseURL: "http://localhost:3001"
 });
-
+// eslint-disable-next-line
 const getAllUsers = async () => {
   const resp = await api.get("/users");
   return resp.data
@@ -15,8 +15,12 @@ const createUser = async data => {
 };
 
 const loginUser = async data => {
-  const resp = await api.post("/users/login", data);
-  return resp.data;
+  try {
+    const resp = await api.post("/users/login", data);
+    return resp.data;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const addEntry = async data => {

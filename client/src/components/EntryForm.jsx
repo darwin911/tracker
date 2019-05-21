@@ -1,43 +1,61 @@
 import React from "react";
-import moment from "moment";
 
-const EntryForm = ({ handleSubmit, mood, setMood, userEntries }) => {
+const EntryForm = ({
+  handleSubmit,
+  handleEntryChange,
+  entryData,
+}) => {
   return (
     <form className="mood-form" onSubmit={e => handleSubmit(e)}>
-      <h2 className="mood">{mood}</h2>
+      <h2 className="mood">{entryData.mood}</h2>
       <button
         className="face one"
         type="submit"
+        name="mood"
         value={1}
-        onClick={e => setMood(e)}
+        onClick={e => handleEntryChange(e)}
       />
       <button
         className="face two"
         type="submit"
+        name="mood"
         value={2}
-        onClick={e => setMood(e)}
+        onClick={e => handleEntryChange(e)}
       />
       <button
         className="face three"
         type="submit"
+        name="mood"
         value={3}
-        onClick={e => setMood(e)}
+        onClick={e => handleEntryChange(e)}
       />
       <button
         className="face four"
         type="submit"
+        name="mood"
         value={4}
-        onClick={e => setMood(e)}
+        onClick={e => handleEntryChange(e)}
       />
       <button
         className="face five"
         type="submit"
+        name="mood"
         value={5}
-        onClick={e => setMood(e)}
+        onClick={e => handleEntryChange(e)}
       />
 
       {/* current date as default value */}
-      <input type="date" value={moment(new Date()).format("YYYY-MM-DD")}/>
+      <input type="date" name="date" value={entryData.date} onChange={handleEntryChange} />
+
+      <input
+        type="number"
+        placeholder="Weight"
+        name="weight"
+        min={50}
+        value={entryData.weight}
+        onChange={handleEntryChange}
+        required
+      />
 
       <button className="submit-btn">Submit</button>
     </form>

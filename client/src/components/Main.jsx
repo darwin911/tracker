@@ -4,16 +4,21 @@ import UserEntries from "./UserEntries";
 
 class Main extends Component {
   render() {
-    const { handleSubmit, setMood, mood, userEntries } = this.props;
+    const {
+      handleSubmit,
+      handleEntryChange,
+      entryData,
+      userEntries
+    } = this.props;
     return (
       <main>
         <EntryForm
+          handleEntryChange={handleEntryChange}
           handleSubmit={handleSubmit}
-          setMood={setMood}
-          mood={mood}
+          entryData={entryData}
           userEntries={userEntries}
         />
-        <UserEntries userEntries={userEntries}/>
+        <UserEntries userEntries={userEntries} />
       </main>
     );
   }
