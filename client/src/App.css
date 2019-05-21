@@ -26,6 +26,10 @@ header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   -ms-flex-pack: distribute;
       justify-content: space-around;
   -webkit-box-align: center;
@@ -71,11 +75,13 @@ header {
 }
 
 main {
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
   min-height: 100vh;
 }
 
 main p {
-  color: white;
   margin-bottom: 0.7rem;
 }
 
@@ -108,6 +114,11 @@ main p:last-of-type {
   border-radius: 5px;
   -webkit-transition: opacity 200ms ease;
   transition: opacity 200ms ease;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: bold;
+  text-align: center;
+  background: #ccc;
 }
 
 [type="date"]:hover {
@@ -115,7 +126,6 @@ main p:last-of-type {
 }
 
 .mood {
-  color: white;
   font-size: 2rem;
 }
 
@@ -135,7 +145,15 @@ main p:last-of-type {
   margin: 0 auto;
   border: none;
   border-radius: 5px;
+  font-size: inherit;
+  color: white;
+  background: brown;
   padding: 0.7rem 1rem;
+}
+
+.submit-btn:hover {
+  background: darkgoldenrod;
+  cursor: pointer;
 }
 
 .one {
@@ -159,9 +177,10 @@ main p:last-of-type {
 }
 
 footer {
-  position: fixed;
+  position: absolute;
   bottom: 0;
-  width: 100%;
+  left: 0;
+  right: 0;
   background: #eaeaea;
 }
 

@@ -25,6 +25,10 @@ body {
 header {
   background: $lightGray;
   display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   justify-content: space-around;
   align-items: center;
 }
@@ -61,9 +65,10 @@ header {
 }
 
 main {
+  display: grid;
+  place-items: center;
   min-height: 100vh;
   p {
-    color: white;
     margin-bottom: 0.7rem;
     &:last-of-type{
       margin-bottom: 1.5rem;
@@ -86,13 +91,17 @@ main {
   padding: 0.5rem 1rem;
   border-radius: 5px;
   transition: opacity 200ms ease;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: bold;
+  text-align: center;
+  background: #ccc;
   &:hover {
     opacity: 0.9;
   }
 }
 
 .mood {
-  color: white;
   font-size: 2rem;
 }
 
@@ -112,7 +121,14 @@ main {
   margin: 0 auto;
   border: none;
   border-radius: 5px;
+  font-size: inherit;
+  color: white;
+  background: brown;
   padding: 0.7rem 1rem;
+   &:hover {
+     background: darkgoldenrod;
+     cursor: pointer;
+   }
 }
 
 .one    {background: center/cover no-repeat url("./assets/sad-tear.svg");}
