@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import Header from "./components/Header.jsx";
-import MoodTracker from "./components/MoodTracker.jsx";
+import Main from "./components/Main.jsx";
 import Footer from "./components/Footer.jsx";
 import {
   createUser,
@@ -53,7 +53,7 @@ class App extends React.Component {
         userEntries,
         currentUser
       });
-      this.props.history.push('/');
+      this.props.history.push("/");
     }
   }
 
@@ -140,7 +140,7 @@ class App extends React.Component {
           handleRegister={this.handleRegister}
         />
         {isLoggedIn ? (
-          <MoodTracker
+          <Main
             mood={mood}
             handleSubmit={this.handleSubmit}
             setMood={this.setMood}

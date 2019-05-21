@@ -45,7 +45,6 @@ const Header = props => {
           )}
         />
       </nav>
-     
     </header>
   );
 };
