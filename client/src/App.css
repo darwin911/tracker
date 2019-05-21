@@ -101,7 +101,7 @@ main p:last-of-type {
   height: 100vh;
 }
 
-[type="date"] {
+[type="date"], [type="number"] {
   display: block;
   margin: 0 auto 1rem;
   border: none;
@@ -116,7 +116,7 @@ main p:last-of-type {
   background: #ccc;
 }
 
-[type="date"]:hover {
+[type="date"]:hover, [type="number"]:hover {
   opacity: 0.9;
 }
 
@@ -144,10 +144,12 @@ main p:last-of-type {
   color: white;
   background: brown;
   padding: 0.7rem 1rem;
+  -webkit-transition: background 150ms ease;
+  transition: background 150ms ease;
 }
 
 .submit-btn:hover {
-  background: darkgoldenrod;
+  background: #7e2020;
   cursor: pointer;
 }
 

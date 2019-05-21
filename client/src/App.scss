@@ -80,7 +80,7 @@ main {
   height: 100vh;
 }
 
-[type="date"] {
+[type="date"], [type="number"] {
   display: block;
   margin: 0 auto 1rem;
   border: none;
@@ -121,8 +121,9 @@ main {
   color: white;
   background: brown;
   padding: 0.7rem 1rem;
+  transition: background 150ms ease;
   &:hover {
-    background: darkgoldenrod;
+    background: hsl(0, 59%, 31%);
     cursor: pointer;
   }
 }
