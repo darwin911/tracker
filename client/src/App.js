@@ -83,13 +83,15 @@ class App extends React.Component {
       const resp = await loginUser(userData);
       if (resp) {
         localStorage.setItem("userData", resp.token);
+        const userEntries = await getUserEntries({ user_id: resp.userData.id });
         this.setState({
           isLoggedIn: true,
           currentUser: resp.userData,
           userData: {
             email: "",
             password: ""
-          }
+          },
+          userEntries,
         });
         this.props.history.push("/");
       } else {
@@ -102,7 +104,10 @@ class App extends React.Component {
 
   handleLogout() {
     localStorage.removeItem("userData");
-    this.setState({ isLoggedIn: false });
+    this.setState({
+      isLoggedIn: false,
+      userEntries: []
+    });
   }
 
   async handleRegister(e) {

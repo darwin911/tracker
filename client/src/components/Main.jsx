@@ -23,7 +23,8 @@ class Main extends Component {
       labels: ["Very Sad", "Sad", "Average", "Happy", "Very Happy"],
       datasets: [
         {
-          label: "# of Moods",
+          label: "Your moods",
+          fill: false,
           data: [
             this.props.userEntries.filter(entry => entry.mood === 1).length,
             this.props.userEntries.filter(entry => entry.mood === 2).length,
