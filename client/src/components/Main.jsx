@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import EntryForm from "./EntryForm";
 import UserEntries from "./UserEntries";
-import { Line } from "react-chartjs-2";
+import { Line, Doughnut } from "react-chartjs-2";
+import moment from "moment";
 
 class Main extends Component {
   constructor(props) {
@@ -20,18 +21,14 @@ class Main extends Component {
     } = this.props;
 
     const data = {
-      labels: ["Very Sad", "Sad", "Average", "Happy", "Very Happy"],
+      labels: this.props.userEntries.map(entry =>
+        moment(entry.createdAt).format("h:mm a MMM DD")
+      ),
       datasets: [
         {
-          label: "Your moods",
+          label: "Your moods over time",
           fill: false,
-          data: [
-            this.props.userEntries.filter(entry => entry.mood === 1).length,
-            this.props.userEntries.filter(entry => entry.mood === 2).length,
-            this.props.userEntries.filter(entry => entry.mood === 3).length,
-            this.props.userEntries.filter(entry => entry.mood === 4).length,
-            this.props.userEntries.filter(entry => entry.mood === 5).length
-          ],
+          data: this.props.userEntries.map(entry => entry.mood),
           backgroundColor: [
             "rgba(255, 99, 132, 0.2)",
             "rgba(54, 162, 235, 0.2)",
@@ -58,7 +55,7 @@ class Main extends Component {
           entryData={entryData}
           userEntries={userEntries}
         />
-        <UserEntries userEntries={userEntries} />
+        {/* <UserEntries userEntries={userEntries} /> */}
         <Line data={data} />
       </main>
     );

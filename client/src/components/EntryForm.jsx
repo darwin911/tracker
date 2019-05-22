@@ -1,13 +1,9 @@
 import React from "react";
 
-const EntryForm = ({
-  handleSubmit,
-  handleEntryChange,
-  entryData,
-}) => {
+const EntryForm = ({ handleSubmit, handleEntryChange, entryData }) => {
   return (
     <form className="mood-form" onSubmit={e => handleSubmit(e)}>
-      <h2 className="mood">{entryData.mood}</h2>
+      <label htmlFor="mood">What's your mood?</label>
       <button
         className="face one"
         type="submit"
@@ -43,6 +39,8 @@ const EntryForm = ({
         value={5}
         onClick={e => handleEntryChange(e)}
       />
+
+      <h2 className="mood">{entryData.mood}</h2>
 
       {/* current date as default value */}
       {/* <input type="date" name="date" value={entryData.date} onChange={handleEntryChange} /> */}
