@@ -5,6 +5,10 @@ footer {
   left: 0;
   right: 0;
   background: $lightGray;
+  padding: 1rem 0;
+  a {
+    color: black;
+  }
 }
 
 %contact-icon {

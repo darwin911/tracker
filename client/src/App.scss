@@ -62,7 +62,7 @@ main {
   display: grid;
   place-items: center;
   min-height: 100vh;
-  padding: 50px 0 80px;
+  padding: 50px 0 120px;
   p {
     margin-bottom: 0.7rem;
     &:last-of-type {
@@ -102,6 +102,10 @@ a[href="/login"], a[href="/register"] {
   &:hover {
     opacity: 0.9;
   }
+}
+
+.mood-form label {
+  display: block;
 }
 
 .mood {

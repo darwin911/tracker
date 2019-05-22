@@ -72,7 +72,7 @@ main {
   display: grid;
   place-items: center;
   min-height: 100vh;
-  padding: 50px 0 80px;
+  padding: 50px 0 120px;
 }
 
 main p {
@@ -125,6 +125,10 @@ a[href="/login"], a[href="/register"] {
 
 [type="date"]:hover, [type="number"]:hover {
   opacity: 0.9;
+}
+
+.mood-form label {
+  display: block;
 }
 
 .mood {
@@ -186,6 +190,11 @@ footer {
   left: 0;
   right: 0;
   background: #eaeaea;
+  padding: 1rem 0;
+}
+
+footer a {
+  color: black;
 }
 
 .envelope, .github, .linkedin {
