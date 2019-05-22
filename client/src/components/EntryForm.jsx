@@ -49,7 +49,7 @@ const EntryForm = ({
 
       <input
         type="number"
-        placeholder="Weight"
+        placeholder="Weight (lbs)"
         name="weight"
         min={50}
         value={entryData.weight}

@@ -31,15 +31,15 @@ class App extends React.Component {
         name: "",
         email: "",
         password: "",
-        picture: "",
+        picture: ""
       },
       entryData: {
         date: moment(new Date()).format("YYYY-MM-DD"),
         mood: "",
-        weight: "",
+        weight: ""
       },
       userEntries: [],
-      err: "",
+      err: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -130,8 +130,8 @@ class App extends React.Component {
     const data = {
       user_id: this.state.currentUser.id,
       mood: this.state.entryData.mood,
-      weight: parseInt(this.state.entryData.weight),
-    }
+      weight: parseInt(this.state.entryData.weight)
+    };
     const resp = await addEntry(data);
     this.setState(prevState => ({
       userEntries: [...prevState.userEntries, resp]
@@ -145,14 +145,14 @@ class App extends React.Component {
       return {
         entryData: {
           ...prevState.entryData,
-          [name]: value,
+          [name]: value
         }
-      }
-    })
+      };
+    });
   }
 
   render() {
-    const { isLoggedIn, currentUser, entryData, userEntries, err, } = this.state;
+    const { isLoggedIn, currentUser, entryData, userEntries, err } = this.state;
     return (
       <div className="App">
         <Header

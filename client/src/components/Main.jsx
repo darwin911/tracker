@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import EntryForm from "./EntryForm";
 import UserEntries from "./UserEntries";
-import { 
-  // Doughnut,
-  // Line,
-  Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 
 class Main extends Component {
   constructor(props) {
@@ -48,7 +45,7 @@ class Main extends Component {
             "rgba(75, 192, 192, 1)",
             "rgba(153, 102, 255, 1)"
           ],
-          borderWidth: 1
+          borderWidth: 2
         }
       ]
     };
@@ -61,7 +58,7 @@ class Main extends Component {
           userEntries={userEntries}
         />
         <UserEntries userEntries={userEntries} />
-        <Bar data={data} />
+        <Line data={data} />
       </main>
     );
   }
