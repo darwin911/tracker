@@ -58,13 +58,13 @@ header {
           flex-direction: column;
 }
 
-.form input {
+.form input, .form button {
   font-family: inherit;
   font-size: inherit;
   border: none;
-  margin-bottom: 1rem;
+  margin-bottom: 0.6rem;
   padding: 0.25rem 0.6rem;
-  border-radius: 5px;
+  border-radius: 3px;
 }
 
 main {
@@ -83,8 +83,15 @@ main p:last-of-type {
   margin-bottom: 1.5rem;
 }
 
+a[href="/login"], a[href="/register"] {
+  background: white;
+  color: black;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
 .container {
-  background: #257aa6;
+  background: radial-gradient(circle at top left, #257aa6, #01a0a0);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

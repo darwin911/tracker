@@ -91,7 +91,7 @@ class App extends React.Component {
             email: "",
             password: ""
           },
-          userEntries,
+          userEntries
         });
         this.props.history.push("/");
       } else {
@@ -178,10 +178,19 @@ class App extends React.Component {
           />
         ) : (
           <section className="container">
-            <Link to="/login">Login</Link>
-            or
-            <Link to="/register">Register</Link>
-            <p style={{ color: "red" }}>{err && err}</p>
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <>
+                  <Link to="/login">Login</Link>
+                  or
+                  <Link to="/register">Register</Link>
+                  <p style={{ color: "red" }}>{err && err}</p>
+                </>
+              )}
+            />
+
             {!isLoggedIn && (
               <>
                 <Route
@@ -206,7 +215,6 @@ class App extends React.Component {
             )}
           </section>
         )}
-
         <Footer />
       </div>
     );

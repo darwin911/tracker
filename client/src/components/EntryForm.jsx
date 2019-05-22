@@ -45,7 +45,7 @@ const EntryForm = ({
       />
 
       {/* current date as default value */}
-      <input type="date" name="date" value={entryData.date} onChange={handleEntryChange} />
+      {/* <input type="date" name="date" value={entryData.date} onChange={handleEntryChange} /> */}
 
       <input
         type="number"
