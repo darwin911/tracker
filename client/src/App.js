@@ -67,7 +67,6 @@ class App extends React.Component {
 
   handleChange(e) {
     const { name, value } = e.target;
-    console.log('change called')
     this.setState(prevState => ({
       userData: {
         ...prevState.userData,
@@ -86,6 +85,7 @@ class App extends React.Component {
         localStorage.setItem("userData", resp.token);
         this.setState({
           isLoggedIn: true,
+          currentUser: resp.userData,
           userData: {
             email: "",
             password: ""
