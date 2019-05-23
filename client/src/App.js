@@ -52,10 +52,16 @@ class App extends React.Component {
 
   async componentDidMount() {
     const userData = localStorage.getItem("userData");
-
     if (userData) {
       const currentUser = decode(userData);
-      const userEntries = await getUserEntries({ user_id: currentUser.id });
+      // attempts to get userEntries from server
+      let userEntries = []
+      try {
+        userEntries = await getUserEntries({ user_id: currentUser.id });
+      } catch (err) {
+        console.error('Failed to retrieve user entries', err);
+      }
+      // will set isLogged in and currentUser with decoded token from local storage, but will leave userEntries as empty array (if it fails)
       this.setState({
         isLoggedIn: true,
         userEntries,

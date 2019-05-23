@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import EntryForm from "./EntryForm";
-import UserEntries from "./UserEntries";
-import { Line, Doughnut } from "react-chartjs-2";
+// import UserEntries from "./UserEntries";
+import { Line } from "react-chartjs-2";
 import moment from "moment";
 
 class Main extends Component {
@@ -28,7 +28,8 @@ class Main extends Component {
         {
           label: "Your moods over time",
           fill: false,
-          data: this.props.userEntries.map(entry => entry.mood),
+          // data: this.props.userEntries.map(entry => entry.mood),
+          data: [0, ...this.props.userEntries.map(entry => entry.mood)],
           backgroundColor: [
             "rgba(255, 99, 132, 0.2)",
             "rgba(54, 162, 235, 0.2)",
@@ -43,7 +44,7 @@ class Main extends Component {
             "rgba(75, 192, 192, 1)",
             "rgba(153, 102, 255, 1)"
           ],
-          borderWidth: 2
+          borderWidth: 1
         }
       ]
     };

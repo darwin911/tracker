@@ -80,7 +80,6 @@ userRouter.post("/login", async (req, res) => {
     const user = await User.findOne({ where: { email } });
     if (user !== null) {
       const isAuthenticated = await compare(password, user.password_digest);
-      console.log("Authenticated: ", isAuthenticated);
       if (isAuthenticated === true) {
         const userData = {
           id: user.id,
