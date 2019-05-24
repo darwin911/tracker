@@ -24,8 +24,10 @@ const UserEntries = ({ userEntries }) => {
       {userEntries &&
         userEntries.map(entry => (
           <article key={entry.id}>
-            {moment(entry.createdAt).format("h:mm a MMM DD")} you were feeling:{" "}
-            <strong>{parseMood(entry.mood)}</strong>.
+            <p>{moment(entry.createdAt).format("h:mm a MMM DD")} you were feeling:{" "}
+            <strong>{parseMood(entry.mood)}</strong>.</p>
+            <p>Memo: {entry.memo}</p>
+            <p>exercise: {entry.exercise ? "Yup" : "Nope"}</p>
           </article>
         ))}
     </section>

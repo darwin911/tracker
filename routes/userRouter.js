@@ -1,6 +1,7 @@
 const express = require("express");
 const { User, Entry } = require("../models");
 const { hash, compare, encode, verify } = require("../auth");
+const moment = require("moment");
 
 const userRouter = express.Router();
 
@@ -92,26 +93,34 @@ userRouter.post("/login", async (req, res) => {
       res.json({ msg: "Invalid Credentials" });
     }
     return res.status(401).send("Invalid Credentials");
-  } catch (e) {
-    console.error(e);
+  } catch (err) {
+    console.error(err);
   }
 });
 
 userRouter.post("/:user_id/entry", async (req, res) => {
   try {
     const user = await User.findByPk(req.body.user_id);
-    console.log(req.body);
-    const { mood, exercise, memo } = req.body;
-    const entry = await Entry.create({
-      mood,
-      exercise,
-      memo
-    });
+    // get user entries
+    const resp = await user.getEntries();
+    const dates = resp
+      // formats dates to MM/DD/YYYY
+      .map(entry => moment(entry.dataValues.createdAt).format("MM-DD-YYYY"))
+      // compares dates to current day (unique date)
+      .filter(date => date === moment().format("MM-DD-YYYY"));
 
-    entry.setUser(user);
-    res.json(entry);
-  } catch (error) {
-    console.error(error);
+    if (dates.length === 0) {
+      const { mood, exercise, memo } = req.body;
+      const entry = await Entry.create({
+        mood,
+        exercise,
+        memo
+      });
+      entry.setUser(user);
+      res.json(entry);
+    }
+  } catch (err) {
+    console.error(err);
   }
 });
 
@@ -122,8 +131,8 @@ userRouter.get("/:user_id/entries", async (req, res) => {
       where: { user_id: req.params.user_id }
     });
     res.json({ entries });
-  } catch (e) {
-    res.stats(500).send(e.message);
+  } catch (err) {
+    res.stats(500).send(err.message);
   }
 });
 
