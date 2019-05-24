@@ -3,10 +3,8 @@ import React from "react";
 const EntryForm = ({
   handleSubmit,
   handleEntryChange,
-  entryData,
   toggleExercise,
-  exercise,
-  memo
+  entryData,
 }) => {
   return (
     <form className="mood-form" onSubmit={e => handleSubmit(e)}>
@@ -58,7 +56,7 @@ const EntryForm = ({
         id="exercise"
         name="exercise"
         onChange={toggleExercise}
-        value={exercise}
+        value={entryData.exercise}
       />
 
       {/* <label htmlFor="alcohol">Did you drink?</label>
@@ -76,7 +74,7 @@ const EntryForm = ({
         type="text"
         name="memo"
         onChange={e => handleEntryChange(e)}
-        value={memo}
+        value={entryData.memo}
       />
 
       <button className="submit-btn">Submit</button>

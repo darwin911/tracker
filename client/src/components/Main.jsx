@@ -61,8 +61,6 @@ class Main extends Component {
           entryData={entryData}
           userEntries={userEntries}
           toggleExercise={toggleExercise}
-          exercise={exercise}
-          memo={memo}
         />
         <UserEntries userEntries={userEntries} />
         {/* <Line data={data} options={opts} /> */}

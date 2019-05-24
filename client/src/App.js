@@ -49,7 +49,7 @@ class App extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
 
     this.toggleExercise = this.toggleExercise.bind(this);
-  }
+  } 
 
   async componentDidMount() {
     const userData = localStorage.getItem("userData");
