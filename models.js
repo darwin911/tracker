@@ -45,9 +45,14 @@ const Entry = sequelize.define('entries', {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
-  weight: {
-    type: Sequelize.INTEGER,
+  memo: {
+    type: Sequelize.STRING,
     allowNull: false,
+  },
+  exercise: {
+    type: Sequelize.BOOLEAN,
+    allowNull: false,
+    defaultValue: false,
   }
 });
 

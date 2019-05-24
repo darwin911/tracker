@@ -99,11 +99,13 @@ userRouter.post("/login", async (req, res) => {
 
 userRouter.post("/:user_id/entry", async (req, res) => {
   try {
-    console.log(req.body)
     const user = await User.findByPk(req.body.user_id);
+    console.log(req.body);
+    const { mood, exercise, memo } = req.body;
     const entry = await Entry.create({
-      mood: req.body.mood,
-      weight: req.body.weight,
+      mood,
+      exercise,
+      memo
     });
 
     entry.setUser(user);
