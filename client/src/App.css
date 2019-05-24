@@ -67,6 +67,10 @@ header {
   border-radius: 3px;
 }
 
+label[for="exercise"], input[name="memo"] {
+  margin-bottom: 1.5rem;
+}
+
 main {
   display: -ms-grid;
   display: grid;
@@ -127,8 +131,14 @@ a[href="/login"], a[href="/register"] {
   opacity: 0.9;
 }
 
-.mood-form label {
+.mood-form label:first {
   display: block;
+}
+
+.mood-form label:nth-of-type(2) {
+  margin-right: 1rem;
+  margin-bottom: 1.5rem;
+  display: inline-block;
 }
 
 .mood {

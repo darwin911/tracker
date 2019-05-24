@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import EntryForm from "./EntryForm";
-// import UserEntries from "./UserEntries";
-import { Line } from "react-chartjs-2";
+import UserEntries from "./UserEntries";
+// import { Line, Bar } from "react-chartjs-2";
 import moment from "moment";
 
 class Main extends Component {
@@ -12,13 +12,31 @@ class Main extends Component {
     };
   }
 
+  randomColors(n) {
+    const colorsArray = [];
+    for (let i = 0; i < n; i++) {
+      const r = Math.floor(Math.random() * 256);
+      const g = Math.floor(Math.random() * 256);
+      const b = Math.floor(Math.random() * 256);
+      colorsArray.push(`rgba(${r}, ${g}, ${b}, 0.7)`);
+    }
+    return colorsArray;
+  }
+
   render() {
     const {
       handleSubmit,
       handleEntryChange,
       entryData,
-      userEntries
+      userEntries,
+      exercise,
+      toggleExercise,
+      memo,
     } = this.props;
+
+    const opts = {
+
+    };
 
     const data = {
       labels: this.props.userEntries.map(entry =>
@@ -26,24 +44,11 @@ class Main extends Component {
       ),
       datasets: [
         {
-          label: "Your moods over time",
+          label: "Mood",
           fill: false,
-          // data: this.props.userEntries.map(entry => entry.mood),
-          data: [0, ...this.props.userEntries.map(entry => entry.mood)],
-          backgroundColor: [
-            "rgba(255, 99, 132, 0.2)",
-            "rgba(54, 162, 235, 0.2)",
-            "rgba(255, 206, 86, 0.2)",
-            "rgba(75, 192, 192, 0.2)",
-            "rgba(153, 102, 255, 0.2)"
-          ],
-          borderColor: [
-            "rgba(255, 99, 132, 1)",
-            "rgba(54, 162, 235, 1)",
-            "rgba(255, 206, 86, 1)",
-            "rgba(75, 192, 192, 1)",
-            "rgba(153, 102, 255, 1)"
-          ],
+          data: this.props.userEntries.map(entry => entry.mood),
+          backgroundColor: "rgba(200, 100, 100, 0.5)",
+          borderColor: "rgba(150, 150, 150, 0.5)",
           borderWidth: 1
         }
       ]
@@ -55,9 +60,12 @@ class Main extends Component {
           handleSubmit={handleSubmit}
           entryData={entryData}
           userEntries={userEntries}
+          toggleExercise={toggleExercise}
+          exercise={exercise}
+          memo={memo}
         />
-        {/* <UserEntries userEntries={userEntries} /> */}
-        <Line data={data} />
+        <UserEntries userEntries={userEntries} />
+        {/* <Line data={data} options={opts} /> */}
       </main>
     );
   }
