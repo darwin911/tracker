@@ -13,7 +13,6 @@ import {
 } from "./services/helper";
 import { Link, Route, withRouter } from "react-router-dom";
 import decode from "jwt-decode";
-import moment from "moment";
 
 class App extends React.Component {
   constructor(props) {
@@ -34,9 +33,9 @@ class App extends React.Component {
         picture: ""
       },
       entryData: {
-        date: moment(new Date()).format("YYYY-MM-DD"),
         mood: "",
-        weight: ""
+        exercise: false,
+        memo: ""
       },
       userEntries: [],
       err: ""
@@ -48,6 +47,8 @@ class App extends React.Component {
     this.handleLogout = this.handleLogout.bind(this);
     this.handleRegister = this.handleRegister.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
+    this.toggleExercise = this.toggleExercise.bind(this);
   }
 
   async componentDidMount() {
@@ -55,11 +56,11 @@ class App extends React.Component {
     if (userData) {
       const currentUser = decode(userData);
       // attempts to get userEntries from server
-      let userEntries = []
+      let userEntries = [];
       try {
         userEntries = await getUserEntries({ user_id: currentUser.id });
       } catch (err) {
-        console.error('Failed to retrieve user entries', err);
+        console.error("Failed to retrieve user entries", err);
       }
       // will set isLogged in and currentUser with decoded token from local storage, but will leave userEntries as empty array (if it fails)
       this.setState({
@@ -138,13 +139,20 @@ class App extends React.Component {
 
   async handleSubmit(e) {
     e.preventDefault();
+    const { currentUser, entryData } = this.state;
     const data = {
-      user_id: this.state.currentUser.id,
-      mood: this.state.entryData.mood,
-      weight: parseInt(this.state.entryData.weight)
+      user_id: currentUser.id,
+      mood: entryData.mood,
+      exercise: entryData.exercise,
+      memo: entryData.memo
     };
     const resp = await addEntry(data);
     this.setState(prevState => ({
+      entryData: {
+        mood: 0,
+        exercise: false,
+        memo: ""
+      },
       userEntries: [...prevState.userEntries, resp]
     }));
   }
@@ -162,8 +170,25 @@ class App extends React.Component {
     });
   }
 
+  toggleExercise() {
+    this.setState(prevState => ({
+      entryData: {
+        ...prevState.entryData,
+        exercise: !this.state.entryData.exercise
+      }
+    }));
+  }
+
   render() {
-    const { isLoggedIn, currentUser, entryData, userEntries, err } = this.state;
+    const {
+      isLoggedIn,
+      currentUser,
+      entryData,
+      userEntries,
+      err,
+      exercise,
+      memo
+    } = this.state;
     return (
       <div className="App">
         <Header
@@ -181,6 +206,9 @@ class App extends React.Component {
             handleEntryChange={this.handleEntryChange}
             userEntries={userEntries}
             currentUser={currentUser}
+            toggleExercise={this.toggleExercise}
+            exercise={exercise}
+            memo={memo}
           />
         ) : (
           <section className="container">
