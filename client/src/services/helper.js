@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:3001"
-  // baseURL: "https://tracker-express.herokuapp.com/"
+  // baseURL: "http://localhost:3001"
+  baseURL: "https://tracker-express.herokuapp.com/"
 });
 // eslint-disable-next-line
 const getAllUsers = async () => {
