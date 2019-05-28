@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import EntryForm from "./EntryForm";
 import UserEntries from "./UserEntries";
-// import { Line, Bar } from "react-chartjs-2";
+import { Line, Bar } from "react-chartjs-2";
 import moment from "moment";
 
 class Main extends Component {
@@ -29,9 +29,7 @@ class Main extends Component {
       handleEntryChange,
       entryData,
       userEntries,
-      exercise,
       toggleExercise,
-      memo,
     } = this.props;
 
     const opts = {
@@ -40,7 +38,7 @@ class Main extends Component {
 
     const data = {
       labels: this.props.userEntries.map(entry =>
-        moment(entry.createdAt).format("h:mm a MMM DD")
+        moment(entry.createdAt).format("dddd, MMMM Do")
       ),
       datasets: [
         {
@@ -63,7 +61,7 @@ class Main extends Component {
           toggleExercise={toggleExercise}
         />
         <UserEntries userEntries={userEntries} />
-        {/* <Line data={data} options={opts} /> */}
+        <Line data={data} options={opts} />
       </main>
     );
   }
