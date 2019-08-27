@@ -29,11 +29,16 @@ class Main extends Component {
       handleEntryChange,
       entryData,
       userEntries,
-      toggleExercise,
+      toggleExercise
     } = this.props;
 
     const opts = {
-
+      legend: {
+        display: true,
+        labels: {
+          fontColor: "rgb(255, 99, 132)"
+        }
+      }
     };
 
     const data = {
@@ -46,7 +51,7 @@ class Main extends Component {
           fill: false,
           data: this.props.userEntries.map(entry => entry.mood),
           backgroundColor: "rgba(200, 100, 100, 0.5)",
-          borderColor: "rgba(150, 150, 150, 0.5)",
+          borderColor: "rgba(200, 100, 100, 0.7)",
           borderWidth: 1
         }
       ]
